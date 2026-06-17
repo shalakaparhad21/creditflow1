@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Analysis Report - CreditFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">
+            <h1>
+                <span class="brand-icon" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </span>
+                CreditFlow
+            </h1>
+            <span class="subtitle">Credit Analysis Report</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn-back" onclick="history.back()">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                Back
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container credit-analysis-container">
+        <!-- HEADER -->
+        <section class="report-header">
+            <div class="header-title">
+                <h2>CREDIT ANALYSIS REPORT</h2>
+                <div class="customer-info">
+                    <span class="customer-name" id="customerName">Customer_C00042</span>
+                    <span class="customer-id" id="customerId">ID: C00042</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMER PROFILE -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> CUSTOMER PROFILE</h3>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <span class="profile-label">Monthly Income</span>
+                    <span class="profile-value">Rs. 45,000</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Existing EMI</span>
+                    <span class="profile-value">Rs. 8,500</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Missed Payments</span>
+                    <span class="profile-value profile-good">0 (last 12 months)</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Current Credit Balance</span>
+                    <span class="profile-value">Rs. 28,500</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Current Credit Limit</span>
+                    <span class="profile-value">Rs. 50,000</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Transactions on File</span>
+                    <span class="profile-value">342</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEHAVIORAL FEATURES -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg></span> BEHAVIORAL FEATURES (Deque sliding window - last 90 days)</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-name">Avg Monthly Spend</div>
+                    <div class="feature-value">Rs. 12,400</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-name">Spend Volatility</div>
+                    <div class="feature-value">Rs. 3,200</div>
+                    <div class="feature-detail">(std dev of weekly spend)</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏦</div>
+                    <div class="feature-name">Max Single Transaction</div>
+                    <div class="feature-value">Rs. 8,500</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-name">Salary Consistency</div>
+                    <div class="feature-value">98.5%</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <div class="feature-name">Utilization Rate</div>
+                    <div class="feature-value">57.0%</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-name">Debt-to-Income Ratio</div>
+                    <div class="feature-value">0.44</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-name">Payment History Score</div>
+                    <div class="feature-value">1.00</div>
+                    <div class="feature-detail">(1.0 = perfect)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREDIT SCORE BREAKDOWN -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> CREDIT SCORE BREAKDOWN (CIBIL weighted formula)</h3>
+            <div class="score-breakdown">
+                <div class="breakdown-item">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">Payment History</span>
+                        <span class="breakdown-weight">(35%)</span>
+                    </div>
+                    <div class="breakdown-middle">
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-right">
+                        <span class="breakdown-points">175 pts</span>
+                        <span class="breakdown-label">EXCELLENT - no missed payments</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">Credit Utilization</span>
+                        <span class="breakdown-weight">(30%)</span>
+                    </div>
+                    <div class="breakdown-middle">
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 76%"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-right">
+                        <span class="breakdown-points">137 pts</span>
+                        <span class="breakdown-label">MODERATE - 57% used</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">Debt-to-Income</span>
+                        <span class="breakdown-weight">(20%)</span>
+                    </div>
+                    <div class="breakdown-middle">
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-right">
+                        <span class="breakdown-points">105 pts</span>
+                        <span class="breakdown-label">GOOD - DTI 0.44</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">Spend Stability</span>
+                        <span class="breakdown-weight">(10%)</span>
+                    </div>
+                    <div class="breakdown-middle">
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 94%"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-right">
+                        <span class="breakdown-points">56 pts</span>
+                        <span class="breakdown-label">STABLE spending</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-item">
+                    <div class="breakdown-left">
+                        <span class="breakdown-name">Salary Consistency</span>
+                        <span class="breakdown-weight">(5%)</span>
+                    </div>
+                    <div class="breakdown-middle">
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 98.5%"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-right">
+                        <span class="breakdown-points">30 pts</span>
+                        <span class="breakdown-label">GOOD - 98.5% months</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-total">
+                    <span>TOTAL CREDIT SCORE</span>
+                    <span class="total-score">703 / 900</span>
+                </div>
+
+                <div class="breakdown-percentile">
+                    <span>Percentile Rank</span>
+                    <span class="percentile-value">78.2%</span>
+                    <span class="percentile-label">(beats this % of all customers)</span>
+                </div>
+
+                <div class="breakdown-band">
+                    <span>Score Band</span>
+                    <span class="band-tier tier-b">703 → TIER B (Good)</span>
+                </div>
+            </div>
+
+            <div class="chart-container radar-chart">
+                <canvas id="scoreBreakdownChart"></canvas>
+            </div>
+        </section>
+
+        <!-- APPROVAL DECISION -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span> APPROVAL DECISION</h3>
+            <div class="decision-box approved">
+                <div class="decision-badge">✓ APPROVED</div>
+                <div class="decision-details">
+                    <div class="decision-row">
+                        <span>Credit Tier</span>
+                        <strong class="tier-b">Tier B</strong>
+                    </div>
+                    <div class="decision-row">
+                        <span>Assigned Credit Limit</span>
+                        <strong>Rs. 67,500</strong>
+                    </div>
+                    <div class="decision-row">
+                        <span>Interest Rate</span>
+                        <strong>24% per annum</strong>
+                    </div>
+                    <div class="decision-row">
+                        <span>Required Capital Reserve</span>
+                        <strong>Rs. 5,400</strong>
+                        <span class="detail">(Basel III - 8% of limit)</span>
+                    </div>
+                    <div class="decision-row">
+                        <span>Est. Annual Revenue</span>
+                        <strong>Rs. 6,480</strong>
+                        <span class="detail">(bank's interest income @ 40% APY)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RISK FLAGS -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> RISK FLAGS</h3>
+            <div class="risk-flags">
+                <div class="risk-flag ok">
+                    <span class="flag-icon">✓</span>
+                    <span>No significant risk flags detected.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON WITH PEERS -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg></span> COMPARISON WITH PEERS</h3>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <span class="comp-label">Percentile Rank</span>
+                    <div class="comp-visual">
+                        <div class="percentile-bar">
+                            <div class="percentile-marker" style="left: 78.2%"></div>
+                        </div>
+                        <span class="comp-value">78.2%</span>
+                    </div>
+                    <span class="comp-detail">Better than 78% of all customers</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="comp-label">Credit Score vs Average</span>
+                    <div class="score-comparison">
+                        <div class="score-box your-score">
+                            <div>Your Score</div>
+                            <strong>703</strong>
+                        </div>
+                        <div class="score-box avg-score">
+                            <div>Average</div>
+                            <strong>612</strong>
+                        </div>
+                        <div class="score-diff positive">+91 pts</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSACTION ANALYSIS -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span> TRANSACTION ANALYSIS (Last 90 Days)</h3>
+            <div class="transaction-summary">
+                <div class="txn-stat">
+                    <span class="txn-label">Total Transactions</span>
+                    <span class="txn-value">87</span>
+                </div>
+                <div class="txn-stat">
+                    <span class="txn-label">Debit Transactions</span>
+                    <span class="txn-value">63</span>
+                </div>
+                <div class="txn-stat">
+                    <span class="txn-label">Credit Transactions</span>
+                    <span class="txn-value">24</span>
+                </div>
+                <div class="txn-stat">
+                    <span class="txn-label">Total Debits</span>
+                    <span class="txn-value">Rs. 1,12,500</span>
+                </div>
+                <div class="txn-stat">
+                    <span class="txn-label">Total Credits</span>
+                    <span class="txn-value">Rs. 1,35,000</span>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </section>
+
+        <!-- RECOMMENDATIONS -->
+        <section class="report-section recommendations">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span> RECOMMENDATIONS</h3>
+            <div class="recommendation-list">
+                <div class="recommendation-item positive">
+                    <span class="rec-icon">✓</span>
+                    <span><strong>Maintain payment discipline:</strong> Your perfect payment history is your strongest asset. Continue on-time payments to preserve this score.</span>
+                </div>
+                <div class="recommendation-item neutral">
+                    <span class="rec-icon">→</span>
+                    <span><strong>Monitor credit utilization:</strong> Currently at 57%. Try to keep it below 30% for optimal score improvement.</span>
+                </div>
+                <div class="recommendation-item neutral">
+                    <span class="rec-icon">→</span>
+                    <span><strong>Stabilize income:</strong> Your salary consistency is excellent. Maintain this pattern to qualify for higher tiers in future.</span>
+                </div>
+                <div class="recommendation-item positive">
+                    <span class="rec-icon">✓</span>
+                    <span><strong>Spending patterns look healthy:</strong> Low volatility and balanced monthly spending demonstrate financial maturity.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEXT STEPS -->
+        <section class="report-section">
+            <h3 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> NEXT STEPS</h3>
+            <div class="steps-box">
+                <ol class="steps-list">
+                    <li>Review your assigned credit limit of <strong>Rs. 67,500</strong></li>
+                    <li>Interest rate of <strong>24% p.a.</strong> applies to borrowed amount</li>
+                    <li>Credit card or limit will be activated within <strong>3-5 business days</strong></li>
+                    <li>No annual fees for first year (promotional offer)</li>
+                    <li>Free credit report access for 12 months</li>
+                </ol>
+            </div>
+        </section>
+
+        <div id="downloadNotice" class="validation-message info" role="status" style="max-width: 360px; margin: 0 auto var(--space-4);"></div>
+        <button class="btn-download" onclick="downloadReport()">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Report as PDF
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        withChartLoading('scoreBreakdownChart', function (canvas) {
+            new Chart(canvas.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['Payment\nHistory', 'Credit\nUtilization', 'Debt-to-\nIncome', 'Spend\nStability', 'Salary\nConsistency'],
+                    datasets: [{
+                        label: 'Your Score',
+                        data: [100, 76, 88, 94, 98.5],
+                        borderColor: CreditFlowColors.tierB,
+                        backgroundColor: 'rgba(37, 99, 235, 0.15)',
+                        pointBackgroundColor: CreditFlowColors.tierB,
+                        fill: true
+                    }, {
+                        label: 'Average Customer',
+                        data: [65, 60, 65, 70, 75],
+                        borderColor: CreditFlowColors.neutral,
+                        backgroundColor: 'rgba(148, 163, 184, 0.1)',
+                        pointBackgroundColor: CreditFlowColors.neutral,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } },
+                    scales: { r: { beginAtZero: true, max: 100 } }
+                }
+            });
+        });
+
+        withChartLoading('categoryChart', function (canvas) {
+            new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Food', 'Fuel', 'Rent', 'EMI', 'Shopping', 'Medical', 'Utilities', 'Entertainment'],
+                    datasets: [{
+                        label: 'Amount Spent (Rs.)',
+                        data: [12000, 8500, 18000, 8500, 15000, 3500, 5000, 7500],
+                        backgroundColor: CreditFlowColors.chartPalette,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'x',
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        });
+
+        function downloadReport() {
+            var notice = document.getElementById('downloadNotice');
+            notice.textContent = 'PDF download will be available once backend integration is connected.';
+            notice.classList.add('is-visible');
+            notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

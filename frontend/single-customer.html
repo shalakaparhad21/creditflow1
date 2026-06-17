@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Customer Analysis - CreditFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">
+            <h1>
+                <span class="brand-icon" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </span>
+                CreditFlow
+            </h1>
+            <span class="subtitle">Single Customer Analysis</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn-back" onclick="navigateTo('index.html')">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Menu
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="lookup-container">
+            <section class="lookup-section">
+                <h2>Customer Lookup</h2>
+                
+                <div class="lookup-box">
+                    <div class="input-group" id="inputGroup">
+                        <input 
+                            type="text" 
+                            id="customerId" 
+                            placeholder="Enter Customer ID (e.g., C00042 or just 42)" 
+                            class="input-field"
+                            onkeypress="handleKeyPress(event)"
+                            aria-describedby="searchValidation"
+                            autocomplete="off"
+                        >
+                        <button class="btn-search" onclick="searchCustomer()">Search</button>
+                    </div>
+
+                    <div id="searchValidation" class="validation-message error" role="alert"></div>
+
+                    <div id="notFoundState" class="empty-state" aria-live="polite">
+                        <div class="empty-state-icon" aria-hidden="true">
+                            <svg class="icon icon-lg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg>
+                        </div>
+                        <h4>Customer not found</h4>
+                        <p id="notFoundMessage">That ID isn't in our dataset. Valid range is C00001 to C01000 — try one of the sample IDs below.</p>
+                    </div>
+
+                    <div class="sample-ids">
+                        <p>Sample IDs to try:</p>
+                        <div class="id-tags">
+                            <button class="id-tag" onclick="fillId('C00001')">C00001</button>
+                            <button class="id-tag" onclick="fillId('C00042')">C00042</button>
+                            <button class="id-tag" onclick="fillId('C00127')">C00127</button>
+                            <button class="id-tag" onclick="fillId('C00256')">C00256</button>
+                            <button class="id-tag" onclick="fillId('C00500')">C00500</button>
+                            <button class="id-tag" onclick="fillId('C00999')">C00999</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="resultContainer" class="result-container" style="display: none;">
+                <button class="btn-close-result" onclick="closeResult()">✕ Close Report</button>
+                <iframe id="reportFrame" class="report-frame" src=""></iframe>
+            </div>
+
+            <section class="info-section lookup-info">
+                <h3>How It Works</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            Feature Extraction
+                        </h4>
+                        <p>Analyzes 90-day transaction history using Deque sliding window to extract behavioral patterns.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg>
+                            Credit Score
+                        </h4>
+                        <p>CIBIL-weighted formula: Payment History (35%), Utilization (30%), DTI (20%), Stability (10%), Salary (5%).</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            Approval Decision
+                        </h4>
+                        <p>Decision tree with hard reject rules and tier assignment (A/B/C) based on score and profile.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            Risk Assessment
+                        </h4>
+                        <p>Flags identify concerning patterns: missed payments, high utilization, irregular income, volatility.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="criteria-section">
+                <h3>Approval Criteria</h3>
+                <div class="criteria-grid">
+                    <div class="criteria-box tier-a-criteria">
+                        <h4>Tier A (750-900)</h4>
+                        <ul>
+                            <li>Score ≥ 750</li>
+                            <li>Min Missed Payments: 0</li>
+                            <li>Credit Limit: 3× income (max Rs.10L)</li>
+                            <li>Interest Rate: 18% p.a.</li>
+                        </ul>
+                    </div>
+                    <div class="criteria-box tier-b-criteria">
+                        <h4>Tier B (600-749)</h4>
+                        <ul>
+                            <li>Score 600-749</li>
+                            <li>Max Missed Payments: 2</li>
+                            <li>Credit Limit: 1.5× income (max Rs.5L)</li>
+                            <li>Interest Rate: 24% p.a.</li>
+                        </ul>
+                    </div>
+                    <div class="criteria-box tier-c-criteria">
+                        <h4>Tier C (500-599)</h4>
+                        <ul>
+                            <li>Score 500-599</li>
+                            <li>Max Missed Payments: 3</li>
+                            <li>Credit Limit: 0.5× income (max Rs.2L)</li>
+                            <li>Interest Rate: 36% p.a.</li>
+                        </ul>
+                    </div>
+                    <div class="criteria-box reject-criteria">
+                        <h4>Rejection (&lt;500)</h4>
+                        <ul>
+                            <li>Score &lt; 500</li>
+                            <li>DTI &gt; 55%</li>
+                            <li>Missed Payments &gt; 3</li>
+                            <li>Utilization &gt; 90%</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scoring-formula">
+                <h3>Credit Score Formula (CIBIL-Weighted)</h3>
+                <div class="formula-box">
+                    <div class="formula-row">
+                        <span class="formula-component">
+                            <strong>Payment History</strong> (35%)
+                        </span>
+                        <span class="formula-detail">
+                            1.0 - (Missed Payments × 0.2)
+                        </span>
+                    </div>
+                    <div class="formula-row">
+                        <span class="formula-component">
+                            <strong>Credit Utilization</strong> (30%)
+                        </span>
+                        <span class="formula-detail">
+                            1.0 - Utilization Rate (penalty if &gt; 75%)
+                        </span>
+                    </div>
+                    <div class="formula-row">
+                        <span class="formula-component">
+                            <strong>Debt-to-Income</strong> (20%)
+                        </span>
+                        <span class="formula-detail">
+                            1.0 - (DTI / 0.5), capped at [0, 1]
+                        </span>
+                    </div>
+                    <div class="formula-row">
+                        <span class="formula-component">
+                            <strong>Spend Stability</strong> (10%)
+                        </span>
+                        <span class="formula-detail">
+                            1.0 - (Volatility / 50,000)
+                        </span>
+                    </div>
+                    <div class="formula-row">
+                        <span class="formula-component">
+                            <strong>Salary Consistency</strong> (5%)
+                        </span>
+                        <span class="formula-detail">
+                            % of months with salary income
+                        </span>
+                    </div>
+                    <div class="formula-row final">
+                        <span class="formula-component">
+                            <strong>Final Score</strong>
+                        </span>
+                        <span class="formula-detail">
+                            300 + (Weighted Sum × 600), range [300, 900]
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function normalizeId(input) {
+            input = input.trim().toUpperCase();
+            if (input.startsWith('C')) input = input.substring(1);
+            var num = parseInt(input, 10);
+            if (isNaN(num)) return null;
+            return 'C' + String(num).padStart(5, '0');
+        }
+
+        function isValidCustomerId(id) {
+            if (!id || !/^C\d{5}$/.test(id)) return false;
+            var num = parseInt(id.substring(1), 10);
+            return num >= 1 && num <= 1000;
+        }
+
+        function clearValidation() {
+            var msg = document.getElementById('searchValidation');
+            var notFound = document.getElementById('notFoundState');
+            var group = document.getElementById('inputGroup');
+            msg.classList.remove('is-visible');
+            msg.textContent = '';
+            notFound.classList.remove('is-visible');
+            group.classList.remove('input-error');
+        }
+
+        function showValidation(message) {
+            var msg = document.getElementById('searchValidation');
+            var group = document.getElementById('inputGroup');
+            document.getElementById('notFoundState').classList.remove('is-visible');
+            msg.textContent = message;
+            msg.classList.add('is-visible');
+            group.classList.add('input-error');
+        }
+
+        function showNotFound(id) {
+            clearValidation();
+            var notFound = document.getElementById('notFoundState');
+            document.getElementById('notFoundMessage').textContent =
+                "'" + id + "' isn't in our dataset. Valid range is C00001 to C01000 — try one of the sample IDs below.";
+            notFound.classList.add('is-visible');
+            document.getElementById('inputGroup').classList.add('input-error');
+        }
+
+        function fillId(id) {
+            clearValidation();
+            document.getElementById('customerId').value = id;
+            searchCustomer();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                searchCustomer();
+            }
+        }
+
+        function searchCustomer() {
+            var raw = document.getElementById('customerId').value.trim();
+            clearValidation();
+
+            if (!raw) {
+                showValidation('Please enter a Customer ID.');
+                return;
+            }
+
+            var id = normalizeId(raw);
+            if (!id) {
+                showValidation('Invalid format. Enter a number (e.g. 42) or ID like C00042.');
+                return;
+            }
+
+            if (!isValidCustomerId(id)) {
+                showNotFound(id);
+                return;
+            }
+
+            navigateTo('credit-analysis.html?id=' + encodeURIComponent(id));
+        }
+
+        function closeResult() {
+            document.getElementById('resultContainer').style.display = 'none';
+            document.getElementById('customerId').value = '';
+            clearValidation();
+        }
+
+        document.getElementById('customerId').addEventListener('input', clearValidation);
+    </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Report - CreditFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">
+            <h1>
+                <span class="brand-icon" aria-hidden="true">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </span>
+                CreditFlow
+            </h1>
+            <span class="subtitle">Batch Report Analysis</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn-back" onclick="navigateTo('index.html')">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Menu
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container report-container">
+        <!-- SCORING SUMMARY -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg></span> SCORING SUMMARY</h2>
+            <div class="summary-grid">
+                <div class="metric-card">
+                    <div class="metric-value">1,000</div>
+                    <div class="metric-label">Total Processed</div>
+                    <div class="metric-bar" style="width: 100%"></div>
+                </div>
+                <div class="metric-card positive">
+                    <div class="metric-value">742</div>
+                    <div class="metric-label">Approved</div>
+                    <div class="metric-bar positive" style="width: 74%"></div>
+                </div>
+                <div class="metric-card negative">
+                    <div class="metric-value">258</div>
+                    <div class="metric-label">Rejected</div>
+                    <div class="metric-bar negative" style="width: 26%"></div>
+                </div>
+                <div class="metric-card neutral">
+                    <div class="metric-value">74.2%</div>
+                    <div class="metric-label">Approval Rate</div>
+                    <div class="metric-bar neutral" style="width: 74.2%"></div>
+                </div>
+            </div>
+
+            <div class="summary-details">
+                <div class="detail-box">
+                    <h4>Key Metrics</h4>
+                    <div class="detail-row">
+                        <span>Average Credit Score</span>
+                        <strong>612</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Total Exposure (All Limits)</span>
+                        <strong>Rs. 1,23,45,67,890</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Est. Annual Revenue</span>
+                        <strong>Rs. 22,34,56,700</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIER DISTRIBUTION -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> TIER DISTRIBUTION</h2>
+            <div class="tier-grid">
+                <div class="tier-card tier-a">
+                    <div class="tier-label">Tier A (750-900)</div>
+                    <div class="tier-count">148</div>
+                    <div class="tier-details">
+                        <span>20% of approved</span>
+                        <span>Interest: 18% p.a.</span>
+                    </div>
+                    <div class="tier-exposure">Exposure: Rs. 32,50,00,000</div>
+                </div>
+                <div class="tier-card tier-b">
+                    <div class="tier-label">Tier B (600-749)</div>
+                    <div class="tier-count">356</div>
+                    <div class="tier-details">
+                        <span>48% of approved</span>
+                        <span>Interest: 24% p.a.</span>
+                    </div>
+                    <div class="tier-exposure">Exposure: Rs. 45,67,89,000</div>
+                </div>
+                <div class="tier-card tier-c">
+                    <div class="tier-label">Tier C (500-599)</div>
+                    <div class="tier-count">238</div>
+                    <div class="tier-details">
+                        <span>32% of approved</span>
+                        <span>Interest: 36% p.a.</span>
+                    </div>
+                    <div class="tier-exposure">Exposure: Rs. 23,45,67,000</div>
+                </div>
+                <div class="tier-card tier-rejected">
+                    <div class="tier-label">Rejected (&lt;500)</div>
+                    <div class="tier-count">258</div>
+                    <div class="tier-details">
+                        <span>26% overall</span>
+                        <span>No credit issued</span>
+                    </div>
+                    <div class="tier-exposure">Exposure: Rs. 0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEGMENT TREE RANGE QUERIES -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> SEGMENT TREE RANGE QUERIES (O(log n))</h2>
+            <div class="queries-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Score Band</th>
+                            <th>Count</th>
+                            <th>Percentage</th>
+                            <th>Total Exposure</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tier-a-row">
+                            <td>Tier A (750-900)</td>
+                            <td><strong>148</strong></td>
+                            <td>14.8%</td>
+                            <td>Rs. 32,50,00,000</td>
+                        </tr>
+                        <tr class="tier-b-row">
+                            <td>Tier B (600-749)</td>
+                            <td><strong>356</strong></td>
+                            <td>35.6%</td>
+                            <td>Rs. 45,67,89,000</td>
+                        </tr>
+                        <tr class="tier-c-row">
+                            <td>Tier C (500-599)</td>
+                            <td><strong>238</strong></td>
+                            <td>23.8%</td>
+                            <td>Rs. 23,45,67,000</td>
+                        </tr>
+                        <tr class="rejected-row">
+                            <td>Rejected (&lt;500)</td>
+                            <td><strong>258</strong></td>
+                            <td>25.8%</td>
+                            <td>Rs. 0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="scoreDistributionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- REJECTION ANALYSIS -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span> REJECTION ANALYSIS</h2>
+            <div class="rejection-grid">
+                <div class="rejection-item">
+                    <div class="rejection-count">89</div>
+                    <div class="rejection-reason">Score below 500</div>
+                    <div class="rejection-pct">34.5% of rejections</div>
+                </div>
+                <div class="rejection-item">
+                    <div class="rejection-count">67</div>
+                    <div class="rejection-reason">Missed Payments > 3</div>
+                    <div class="rejection-pct">26.0% of rejections</div>
+                </div>
+                <div class="rejection-item">
+                    <div class="rejection-count">72</div>
+                    <div class="rejection-reason">DTI above 55%</div>
+                    <div class="rejection-pct">27.9% of rejections</div>
+                </div>
+                <div class="rejection-item">
+                    <div class="rejection-count">30</div>
+                    <div class="rejection-reason">Utilization above 90%</div>
+                    <div class="rejection-pct">11.6% of rejections</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="rejectionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- TOP 5 RISKIEST (MIN-HEAP) -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> TOP 5 HIGHEST-RISK APPROVED (Min-Heap)</h2>
+            <div class="risk-list">
+                <div class="risk-item">
+                    <div class="risk-rank">1</div>
+                    <div class="risk-details">
+                        <div class="risk-customer">C00247</div>
+                        <div class="risk-score">Score: 502</div>
+                    </div>
+                    <div class="risk-tier">Tier C</div>
+                    <div class="risk-limit">Limit: Rs. 1,50,000</div>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-rank">2</div>
+                    <div class="risk-details">
+                        <div class="risk-customer">C00512</div>
+                        <div class="risk-score">Score: 505</div>
+                    </div>
+                    <div class="risk-tier">Tier C</div>
+                    <div class="risk-limit">Limit: Rs. 1,75,000</div>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-rank">3</div>
+                    <div class="risk-details">
+                        <div class="risk-customer">C00681</div>
+                        <div class="risk-score">Score: 508</div>
+                    </div>
+                    <div class="risk-tier">Tier C</div>
+                    <div class="risk-limit">Limit: Rs. 1,60,000</div>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-rank">4</div>
+                    <div class="risk-details">
+                        <div class="risk-customer">C00234</div>
+                        <div class="risk-score">Score: 510</div>
+                    </div>
+                    <div class="risk-tier">Tier C</div>
+                    <div class="risk-limit">Limit: Rs. 1,70,000</div>
+                </div>
+                <div class="risk-item">
+                    <div class="risk-rank">5</div>
+                    <div class="risk-details">
+                        <div class="risk-customer">C00456</div>
+                        <div class="risk-score">Score: 512</div>
+                    </div>
+                    <div class="risk-tier">Tier C</div>
+                    <div class="risk-limit">Limit: Rs. 1,80,000</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RISK NETWORK -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="19"/></svg></span> RISK NETWORK (Graph + Union-Find)</h2>
+            <div class="network-stats">
+                <div class="network-stat">
+                    <div class="stat-value">89</div>
+                    <div class="stat-name">Total Relationships</div>
+                </div>
+                <div class="network-stat">
+                    <div class="stat-value">12</div>
+                    <div class="stat-name">Borrower Clusters (2+)</div>
+                </div>
+                <div class="network-stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-name">Largest Cluster Size</div>
+                </div>
+                <div class="network-stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-name">Cycles Detected</div>
+                </div>
+            </div>
+
+            <div class="cluster-info">
+                <h4>Cycle Dependencies Found (3-color DFS):</h4>
+                <div class="cycle-list">
+                    <div class="cycle-item">
+                        <span>Cycle 1:</span> C00142 → C00238 → C00401 → C00142
+                    </div>
+                    <div class="cycle-item">
+                        <span>Cycle 2:</span> C00567 → C00789 → C00567
+                    </div>
+                    <div class="cycle-item">
+                        <span>Cycle 3:</span> C00234 → C00456 → C00678 → C00234
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASCADE SIMULATION -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M2 12h6"/><path d="M22 12h-6"/><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/></svg></span> CASCADE SIMULATION (BFS)</h2>
+            <div class="cascade-box">
+                <div class="cascade-scenario">
+                    <h4>If Customer C00142 Defaults:</h4>
+                    <div class="cascade-result">
+                        <div class="result-item">
+                            <span>Direct Impact</span>
+                            <strong>7 customers</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>Cascade Exposure</span>
+                            <strong>Rs. 45,67,000</strong>
+                        </div>
+                        <div class="result-item">
+                            <span>Risk Level</span>
+                            <strong class="risk-high">HIGH</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPITAL ALLOCATION -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> CAPITAL ALLOCATION (0/1 Knapsack DP)</h2>
+            <div class="allocation-summary">
+                <div class="alloc-metric">
+                    <div class="alloc-label">Capital Budget</div>
+                    <div class="alloc-value">Rs. 5,00,00,000</div>
+                </div>
+                <div class="alloc-metric">
+                    <div class="alloc-label">Capital Deployed</div>
+                    <div class="alloc-value positive">Rs. 4,87,34,560</div>
+                </div>
+                <div class="alloc-metric">
+                    <div class="alloc-label">Utilization</div>
+                    <div class="alloc-value">97.5%</div>
+                </div>
+                <div class="alloc-metric">
+                    <div class="alloc-label">Customers Funded</div>
+                    <div class="alloc-value">612</div>
+                </div>
+            </div>
+
+            <div class="alloc-progress">
+                <div class="progress-item">
+                    <span>Deployed</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill deployed-fill" style="width: 97.5%"></div>
+                    </div>
+                    <span>97.5%</span>
+                </div>
+                <div class="progress-item">
+                    <span>Available</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill available-fill" style="width: 2.5%"></div>
+                    </div>
+                    <span>2.5%</span>
+                </div>
+            </div>
+
+            <div class="allocation-details">
+                <div class="detail-col">
+                    <h4>Allocation Breakdown</h4>
+                    <table>
+                        <tr>
+                            <td>Customers Funded</td>
+                            <td>612</td>
+                        </tr>
+                        <tr>
+                            <td>Customers Deferred</td>
+                            <td>130</td>
+                        </tr>
+                        <tr>
+                            <td>Expected Revenue</td>
+                            <td>Rs. 21,23,45,670</td>
+                        </tr>
+                        <tr>
+                            <td>Avg Revenue/Customer</td>
+                            <td>Rs. 34,680</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="allocationChart"></canvas>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE METRICS -->
+        <section class="report-section">
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> PERFORMANCE METRICS</h2>
+            <div class="performance-box">
+                <div class="perf-item">
+                    <span>Total Execution Time</span>
+                    <strong>342 ms</strong>
+                </div>
+                <div class="perf-item">
+                    <span>Avg Time per Customer</span>
+                    <strong>0.342 ms</strong>
+                </div>
+                <div class="perf-item">
+                    <span>Throughput</span>
+                    <strong>2,924 customers/sec</strong>
+                </div>
+                <div class="perf-item">
+                    <span>Algorithm Efficiency</span>
+                    <strong>Excellent</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        withChartLoading('scoreDistributionChart', function (canvas) {
+            new Chart(canvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Tier A\n(750-900)', 'Tier B\n(600-749)', 'Tier C\n(500-599)', 'Rejected\n(<500)'],
+                    datasets: [{
+                        label: 'Number of Customers',
+                        data: [148, 356, 238, 258],
+                        backgroundColor: [
+                            CreditFlowColors.tierA,
+                            CreditFlowColors.tierB,
+                            CreditFlowColors.tierC,
+                            CreditFlowColors.rejected
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: true } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        });
+
+        withChartLoading('rejectionChart', function (canvas) {
+            new Chart(canvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Score < 500', 'Missed Payments', 'DTI > 55%', 'High Utilization'],
+                    datasets: [{
+                        data: [89, 67, 72, 30],
+                        backgroundColor: [
+                            CreditFlowColors.rejected,
+                            '#ea580c',
+                            CreditFlowColors.tierC,
+                            '#fbbf24'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        });
+
+        withChartLoading('allocationChart', function (canvas) {
+            new Chart(canvas.getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['Capital Deployed\n(Rs. 4,87,34,560)', 'Available\n(Rs. 12,65,440)'],
+                    datasets: [{
+                        data: [97.5, 2.5],
+                        backgroundColor: [CreditFlowColors.tierB, CreditFlowColors.neutral],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
