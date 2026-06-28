@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single Customer Analysis - CreditFlow</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbar-brand">
             <h1>
                 <span class="brand-icon" aria-hidden="true">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </span>
-                CreditFlow
+                </span> CreditFlow
             </h1>
             <span class="subtitle">Single Customer Analysis</span>
         </div>
@@ -29,18 +30,10 @@
         <div class="lookup-container">
             <section class="lookup-section">
                 <h2>Customer Lookup</h2>
-                
+
                 <div class="lookup-box">
                     <div class="input-group" id="inputGroup">
-                        <input 
-                            type="text" 
-                            id="customerId" 
-                            placeholder="Enter Customer ID (e.g., C00042 or just 42)" 
-                            class="input-field"
-                            onkeypress="handleKeyPress(event)"
-                            aria-describedby="searchValidation"
-                            autocomplete="off"
-                        >
+                        <input type="text" id="customerId" placeholder="Enter Customer ID (e.g., C00042 or just 42)" class="input-field" onkeypress="handleKeyPress(event)" aria-describedby="searchValidation" autocomplete="off">
                         <button class="btn-search" onclick="searchCustomer()">Search</button>
                     </div>
 
@@ -73,41 +66,37 @@
                 <iframe id="reportFrame" class="report-frame" src=""></iframe>
             </div>
 
-            <section class="info-section lookup-info">
+            <section class="info-section lookup-info section-secondary">
                 <h3>How It Works</h3>
                 <div class="info-grid">
                     <div class="info-item">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                            Feature Extraction
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Feature Extraction
                         </h4>
                         <p>Analyzes 90-day transaction history using Deque sliding window to extract behavioral patterns.</p>
                     </div>
                     <div class="info-item">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg>
-                            Credit Score
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg> Credit Score
                         </h4>
                         <p>CIBIL-weighted formula: Payment History (35%), Utilization (30%), DTI (20%), Stability (10%), Salary (5%).</p>
                     </div>
                     <div class="info-item">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            Approval Decision
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Approval Decision
                         </h4>
                         <p>Decision tree with hard reject rules and tier assignment (A/B/C) based on score and profile.</p>
                     </div>
                     <div class="info-item">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                            Risk Assessment
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>                            Risk Assessment
                         </h4>
                         <p>Flags identify concerning patterns: missed payments, high utilization, irregular income, volatility.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="criteria-section">
+            <section class="criteria-section section-secondary">
                 <h3>Approval Criteria</h3>
                 <div class="criteria-grid">
                     <div class="criteria-box tier-a-criteria">
@@ -149,59 +138,7 @@
                 </div>
             </section>
 
-            <section class="scoring-formula">
-                <h3>Credit Score Formula (CIBIL-Weighted)</h3>
-                <div class="formula-box">
-                    <div class="formula-row">
-                        <span class="formula-component">
-                            <strong>Payment History</strong> (35%)
-                        </span>
-                        <span class="formula-detail">
-                            1.0 - (Missed Payments × 0.2)
-                        </span>
-                    </div>
-                    <div class="formula-row">
-                        <span class="formula-component">
-                            <strong>Credit Utilization</strong> (30%)
-                        </span>
-                        <span class="formula-detail">
-                            1.0 - Utilization Rate (penalty if &gt; 75%)
-                        </span>
-                    </div>
-                    <div class="formula-row">
-                        <span class="formula-component">
-                            <strong>Debt-to-Income</strong> (20%)
-                        </span>
-                        <span class="formula-detail">
-                            1.0 - (DTI / 0.5), capped at [0, 1]
-                        </span>
-                    </div>
-                    <div class="formula-row">
-                        <span class="formula-component">
-                            <strong>Spend Stability</strong> (10%)
-                        </span>
-                        <span class="formula-detail">
-                            1.0 - (Volatility / 50,000)
-                        </span>
-                    </div>
-                    <div class="formula-row">
-                        <span class="formula-component">
-                            <strong>Salary Consistency</strong> (5%)
-                        </span>
-                        <span class="formula-detail">
-                            % of months with salary income
-                        </span>
-                    </div>
-                    <div class="formula-row final">
-                        <span class="formula-component">
-                            <strong>Final Score</strong>
-                        </span>
-                        <span class="formula-detail">
-                            300 + (Weighted Sum × 600), range [300, 900]
-                        </span>
-                    </div>
-                </div>
-            </section>
+
         </div>
     </div>
 
@@ -293,4 +230,5 @@
         document.getElementById('customerId').addEventListener('input', clearValidation);
     </script>
 </body>
+
 </html>
