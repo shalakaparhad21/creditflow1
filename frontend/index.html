@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreditFlow - Banking DSA Pipeline</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbar-brand">
             <h1>
                 <span class="brand-icon" aria-hidden="true">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </span>
-                CreditFlow
+                </span> CreditFlow
             </h1>
-            <span class="subtitle">Banking DSA Pipeline</span>
+
         </div>
         <div class="navbar-stats">
             <span class="stat-item">Customers: <strong>1,000</strong></span>
@@ -27,7 +28,7 @@
         <div class="dashboard">
             <div class="welcome-section">
                 <h2>Welcome to CreditFlow</h2>
-                <p>Advanced credit scoring and capital allocation system powered by DSA algorithms.</p>
+                <p>Advanced credit scoring and capital allocation system </p>
             </div>
 
             <div class="menu-grid">
@@ -39,7 +40,6 @@
                     <p>Analysis of all 1,000 customers</p>
                     <ul class="menu-features">
                         <li>Scoring Summary</li>
-                        <li>Segment Tree Queries</li>
                         <li>Risk Network Analysis</li>
                         <li>Capital Allocation</li>
                     </ul>
@@ -65,67 +65,44 @@
                 <div class="info-grid">
                     <div class="info-box">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                            Scoring Pipeline
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Scoring Pipeline
                         </h4>
-                        <p>CIBIL-weighted credit scoring with behavioral feature extraction using sliding window analysis on transaction history.</p>
+                        <p>Combined credit scores with recent transaction behavior to assess borrower risk more accurately.</p>
                     </div>
                     <div class="info-box">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg>
-                            Risk Analysis
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg> Risk Analysis
                         </h4>
-                        <p>Graph-based cascade detection and Union-Find clustering for systemic risk assessment across borrower networks.</p>
+                        <p>Identified risk propagation across connected borrowers to evaluate overall system exposure.</p>
                     </div>
                     <div class="info-box">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            Capital Allocation
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Capital Allocation
                         </h4>
-                        <p>0/1 Knapsack dynamic programming to maximize expected revenue within capital budget constraints.</p>
+                        <p>Optimized fund distribution to maximize returns within defined capital limits.</p>
                     </div>
                     <div class="info-box">
                         <h4>
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            Performance
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Performance
                         </h4>
-                        <p>Segment Tree and TreeMap for O(log n) range queries on 1,000 customer dataset.</p>
+                        <p>Enabled fast retrieval and analysis of customer financial data at scale.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg> Basel III Credit Risk
+                        </h4>
+                        <p>Computed PD, LGD, EL, and capital requirements in compliance with Basel III norms.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="dsa-section">
-                <h3>DSA Algorithms Used</h3>
-                <div class="dsa-list">
-                    <div class="dsa-item">
-                        <span class="dsa-tag">TreeMap</span>
-                        <span>Red-Black Tree for sorted score indexing and percentile queries</span>
-                    </div>
-                    <div class="dsa-item">
-                        <span class="dsa-tag">Deque</span>
-                        <span>Sliding window over transaction history for feature extraction</span>
-                    </div>
-                    <div class="dsa-item">
-                        <span class="dsa-tag">SegmentTree</span>
-                        <span>Range sum/max queries on credit limits O(log n)</span>
-                    </div>
-                    <div class="dsa-item">
-                        <span class="dsa-tag">Graph (BFS/DFS)</span>
-                        <span>Cascade detection and 3-color cycle detection</span>
-                    </div>
-                    <div class="dsa-item">
-                        <span class="dsa-tag">Union-Find</span>
-                        <span>Borrower clustering with path compression and union by rank</span>
-                    </div>
-                    <div class="dsa-item">
-                        <span class="dsa-tag">Knapsack DP</span>
-                        <span>0/1 optimization for capital allocation O(N×W)</span>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
