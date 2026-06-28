@@ -23,12 +23,41 @@ function withChartLoading(canvasId, renderFn) {
     });
 }
 
-/** Tier palette for Chart.js — mirrors CSS custom properties. */
+/** Tier palette for Chart.js — mirrors CSS custom properties in style.css */
 var CreditFlowColors = {
     tierA: '#059669',
     tierB: '#2563eb',
     tierC: '#d97706',
     rejected: '#dc2626',
     neutral: '#94a3b8',
-    chartPalette: ['#2563eb', '#059669', '#d97706', '#dc2626', '#7c3aed', '#0891b2', '#db2777', '#ea580c']
+    navy: '#0f172a',
+    surface: '#ffffff',
+    chartPalette: ['#2563eb', '#059669', '#d97706', '#dc2626', '#334155', '#64748b', '#0891b2', '#7c3aed'],
+    tierPalette: ['#059669', '#2563eb', '#d97706', '#dc2626'],
+    rejectionPalette: ['#dc2626', '#d97706', '#334155', '#94a3b8']
 };
+
+/** Shared Chart.js options — respects fixed-height containers */
+var CreditFlowChartDefaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            labels: {
+                font: { family: "'Inter', system-ui, sans-serif", size: 11 },
+                padding: 10,
+                boxWidth: 12
+            }
+        }
+    }
+};
+
+function mergeChartOptions(overrides) {
+    var base = JSON.parse(JSON.stringify(CreditFlowChartDefaults));
+    if (!overrides) return base;
+    if (overrides.plugins) {
+        base.plugins = Object.assign({}, base.plugins, overrides.plugins);
+        delete overrides.plugins;
+    }
+    return Object.assign(base, overrides);
+}
