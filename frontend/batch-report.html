@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbar-brand">
             <h1>
                 <span class="brand-icon" aria-hidden="true">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </span>
-                CreditFlow
+                </span> CreditFlow
             </h1>
             <span class="subtitle">Batch Report Analysis</span>
         </div>
@@ -28,7 +29,7 @@
 
     <div class="main-container report-container">
         <!-- SCORING SUMMARY -->
-        <section class="report-section">
+        <section class="report-section section-hero">
             <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg></span> SCORING SUMMARY</h2>
             <div class="summary-grid">
                 <div class="metric-card">
@@ -115,52 +116,7 @@
             </div>
         </section>
 
-        <!-- SEGMENT TREE RANGE QUERIES -->
-        <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> SEGMENT TREE RANGE QUERIES (O(log n))</h2>
-            <div class="queries-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Score Band</th>
-                            <th>Count</th>
-                            <th>Percentage</th>
-                            <th>Total Exposure</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="tier-a-row">
-                            <td>Tier A (750-900)</td>
-                            <td><strong>148</strong></td>
-                            <td>14.8%</td>
-                            <td>Rs. 32,50,00,000</td>
-                        </tr>
-                        <tr class="tier-b-row">
-                            <td>Tier B (600-749)</td>
-                            <td><strong>356</strong></td>
-                            <td>35.6%</td>
-                            <td>Rs. 45,67,89,000</td>
-                        </tr>
-                        <tr class="tier-c-row">
-                            <td>Tier C (500-599)</td>
-                            <td><strong>238</strong></td>
-                            <td>23.8%</td>
-                            <td>Rs. 23,45,67,000</td>
-                        </tr>
-                        <tr class="rejected-row">
-                            <td>Rejected (&lt;500)</td>
-                            <td><strong>258</strong></td>
-                            <td>25.8%</td>
-                            <td>Rs. 0</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <div class="chart-container">
-                <canvas id="scoreDistributionChart"></canvas>
-            </div>
-        </section>
 
         <!-- REJECTION ANALYSIS -->
         <section class="report-section">
@@ -188,14 +144,17 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="rejectionChart"></canvas>
+            <div class="chart-wrapper">
+                <span class="chart-wrapper-title">Rejection Reasons</span>
+                <div class="chart-container">
+                    <canvas id="rejectionChart"></canvas>
+                </div>
             </div>
         </section>
 
         <!-- TOP 5 RISKIEST (MIN-HEAP) -->
         <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> TOP 5 HIGHEST-RISK APPROVED (Min-Heap)</h2>
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>                TOP 5 HIGHEST-RISK APPROVED</h2>
             <div class="risk-list">
                 <div class="risk-item">
                     <div class="risk-rank">1</div>
@@ -247,7 +206,7 @@
 
         <!-- RISK NETWORK -->
         <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="19"/></svg></span> RISK NETWORK (Graph + Union-Find)</h2>
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="12" x2="5" y2="19"/><line x1="12" y1="12" x2="19" y2="19"/></svg></span>                RISK NETWORK</h2>
             <div class="network-stats">
                 <div class="network-stat">
                     <div class="stat-value">89</div>
@@ -285,7 +244,7 @@
 
         <!-- CASCADE SIMULATION -->
         <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M2 12h6"/><path d="M22 12h-6"/><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/></svg></span> CASCADE SIMULATION (BFS)</h2>
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M2 12h6"/><path d="M22 12h-6"/><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/></svg></span> CASCADE SIMULATION</h2>
             <div class="cascade-box">
                 <div class="cascade-scenario">
                     <h4>If Customer C00142 Defaults:</h4>
@@ -309,7 +268,7 @@
 
         <!-- CAPITAL ALLOCATION -->
         <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> CAPITAL ALLOCATION (0/1 Knapsack DP)</h2>
+            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> CAPITAL ALLOCATION </h2>
             <div class="allocation-summary">
                 <div class="alloc-metric">
                     <div class="alloc-label">Capital Budget</div>
@@ -370,30 +329,10 @@
                 </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="allocationChart"></canvas>
-            </div>
-        </section>
-
-        <!-- PERFORMANCE METRICS -->
-        <section class="report-section">
-            <h2 class="section-title"><span class="section-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> PERFORMANCE METRICS</h2>
-            <div class="performance-box">
-                <div class="perf-item">
-                    <span>Total Execution Time</span>
-                    <strong>342 ms</strong>
-                </div>
-                <div class="perf-item">
-                    <span>Avg Time per Customer</span>
-                    <strong>0.342 ms</strong>
-                </div>
-                <div class="perf-item">
-                    <span>Throughput</span>
-                    <strong>2,924 customers/sec</strong>
-                </div>
-                <div class="perf-item">
-                    <span>Algorithm Efficiency</span>
-                    <strong>Excellent</strong>
+            <div class="chart-wrapper">
+                <span class="chart-wrapper-title">Capital Utilization</span>
+                <div class="chart-container">
+                    <canvas id="allocationChart"></canvas>
                 </div>
             </div>
         </section>
@@ -401,7 +340,7 @@
 
     <script src="script.js"></script>
     <script>
-        withChartLoading('scoreDistributionChart', function (canvas) {
+        withChartLoading('scoreDistributionChart', function(canvas) {
             new Chart(canvas.getContext('2d'), {
                 type: 'bar',
                 data: {
@@ -419,39 +358,49 @@
                         borderSkipped: false
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { display: true } },
-                    scales: { y: { beginAtZero: true } }
-                }
+                options: mergeChartOptions({
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    }
+                })
             });
         });
 
-        withChartLoading('rejectionChart', function (canvas) {
+        withChartLoading('rejectionChart', function(canvas) {
             new Chart(canvas.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Score < 500', 'Missed Payments', 'DTI > 55%', 'High Utilization'],
                     datasets: [{
                         data: [89, 67, 72, 30],
-                        backgroundColor: [
-                            CreditFlowColors.rejected,
-                            '#ea580c',
-                            CreditFlowColors.tierC,
-                            '#fbbf24'
-                        ],
+                        backgroundColor: CreditFlowColors.rejectionPalette,
                         borderWidth: 2,
-                        borderColor: '#fff'
+                        borderColor: CreditFlowColors.surface
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'bottom' } }
-                }
+                options: mergeChartOptions({
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                })
             });
         });
 
-        withChartLoading('allocationChart', function (canvas) {
+        withChartLoading('allocationChart', function(canvas) {
             new Chart(canvas.getContext('2d'), {
                 type: 'pie',
                 data: {
@@ -460,15 +409,19 @@
                         data: [97.5, 2.5],
                         backgroundColor: [CreditFlowColors.tierB, CreditFlowColors.neutral],
                         borderWidth: 2,
-                        borderColor: '#fff'
+                        borderColor: CreditFlowColors.surface
                     }]
                 },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'bottom' } }
-                }
+                options: mergeChartOptions({
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                })
             });
         });
     </script>
 </body>
+
 </html>
